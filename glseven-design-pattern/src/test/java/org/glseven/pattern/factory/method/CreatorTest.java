@@ -5,7 +5,7 @@ import org.glseven.pattern.factory.ProductA1;
 import org.glseven.pattern.factory.ProductA2;
 import org.junit.Test;
 
-public class ProductCreatorATest {
+public class CreatorTest {
 
     @Test
     public void productA1() {
