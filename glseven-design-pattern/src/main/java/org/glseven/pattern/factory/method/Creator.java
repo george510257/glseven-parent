@@ -1,6 +1,10 @@
 package org.glseven.pattern.factory.method;
 
+import org.glseven.pattern.factory.AbstractProductA;
+
 /**
+ * 工厂方法模式
+ *
  * @author george
  */
 public interface Creator {
@@ -14,6 +18,6 @@ public interface Creator {
      * @param <T>
      * @return
      */
-    <T extends Product> T createProduct(Class<T> clazz);
+    <T extends AbstractProductA> T createProduct(Class<T> clazz);
 
 }
