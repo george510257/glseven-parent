@@ -5,6 +5,11 @@
 ### 代码示例
 
 ```java
+/**
+ * 单例模式
+ *
+ * @author george
+ */
 public class Singleton {
 
     private static final Singleton SINGLETON = new Singleton();
@@ -43,19 +48,19 @@ public class Singleton {
  *
  * @author george
  */
-public interface Product {
+public abstract class AbstractProductA {
 
     /**
      * 产品类的公共方法
      */
-    default void method1() {
-        System.out.println("method1");
+    public void method1() {
+        System.out.println("AbstractProductA:method1");
     }
 
     /**
      * 抽象方法
      */
-    void method2();
+    public abstract void method2();
 }
 ```
 
@@ -65,11 +70,11 @@ public interface Product {
  *
  * @author george
  */
-public class ConcreteProduct1 implements Product {
+public class ProductA1 extends AbstractProductA {
 
     @Override
     public void method2() {
-        System.out.println("ConcreteProduct1:method2");
+        System.out.println("ProductA1:method2");
     }
 }
 ```
@@ -80,17 +85,19 @@ public class ConcreteProduct1 implements Product {
  *
  * @author george
  */
-public class ConcreteProduct2 implements Product {
+public class ProductA2 extends AbstractProductA {
 
     @Override
     public void method2() {
-        System.out.println("ConcreteProduct2:method2");
+        System.out.println("ProductA2:method2");
     }
 }
 ```
 
 ```java
 /**
+ * 工厂方法模式
+ *
  * @author george
  */
 public interface Creator {
@@ -104,7 +111,7 @@ public interface Creator {
      * @param <T>
      * @return
      */
-    <T extends Product> T createProduct(Class<T> clazz);
+    <T extends AbstractProductA> T createProduct(Class<T> clazz);
 
 }
 ```
@@ -113,10 +120,10 @@ public interface Creator {
 /**
  * @author george
  */
-public class ConcreteCreator implements Creator {
+public class ProductCreatorA implements Creator {
 
     @Override
-    public <T extends Product> T createProduct(Class<T> clazz) {
+    public <T extends AbstractProductA> T createProduct(Class<T> clazz) {
         try {
             return (T) Class.forName(clazz.getName()).newInstance();
         } catch (Exception e) {
